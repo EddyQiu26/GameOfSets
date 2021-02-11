@@ -1,0 +1,533 @@
+/* rest  */
+* {
+    padding: 0;
+    margin: 0;
+    box-sizing: border-box;
+    background: none;
+}
+/* end of rest style */
+
+
+/* set default background color */
+:root{
+    --background-color: rgb(52,55,69);
+}
+/* end of setting default background  */
+
+
+body {
+    width: 100vw;
+    height: 100vh;
+    overflow-x: hidden;
+}
+
+/* start of landing page styling */
+#landing-page {
+    width: 100%;
+    height: 100%;
+    background-color: var(--background-color);
+    display: flex;
+    align-items: center;
+    justify-content: center;
+}
+
+#loader-container {
+    width: 10%;
+    height: calc(100vw * 0.1);
+    border: none;
+    background: linear-gradient(to top, rgb(0, 153, 255), rgb(255, 0, 102), pink);
+    border-radius: 50%;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    animation-name: spin;
+    animation-duration: 1s;
+    animation-timing-function: linear;
+    animation-iteration-count: infinite;
+    -webkit-animation-name: spin;
+    -webkit-animation-duration: 1s;
+    -webkit-animation-timing-function: linear;
+    -webkit-animation-iteration-count: infinite;
+}
+
+#loader {
+    width: 90%;
+    height: 90%;
+    border: none;
+    border-radius: 50%;
+    background: var(--background-color);
+}
+
+@keyframes spin {
+    0% {
+        transform: rotate(0deg)
+    }
+
+    100% {
+        transform: rotate(360deg)
+    }
+}
+
+.startButton {
+    padding: 10px;
+    background: rgb(255, 0, 102);
+    color: white;
+    font-size: 120%;
+    border-radius: 2px;
+    border: none;
+    outline: none;
+    transform: translateY(0px);
+    text-shadow:  none;
+    transition: transform .3s linear, text-shadow .1s linear;
+}
+
+.startButton:active {
+    transform: translateY(2px);
+    text-shadow: 0px 1px 1px black;
+    box-shadow: 0px 2px 7px black;
+}
+/* end of landing page styling */
+
+
+/* start of game page stying */
+.game-container {
+    width: 100%;
+    display: none;
+}
+
+.card-display-container {
+    display: flex;
+    align-items: flex-start;
+    justify-content: center;
+    flex-wrap: wrap;
+    width: 100%;
+    height: 420px;
+    margin-left: auto;
+    margin-right: auto;
+    margin-bottom: 20px;
+    overflow: auto;
+}
+
+.winner-page, .game-over-page {
+    display: flex;
+    width: 100%;
+    height: 100%;
+    height: 500px;
+    color: white;
+    justify-content: center;
+    align-items: center;
+    flex-direction: column;
+}
+
+.winner-page {
+    position: relative;
+    top: -500px;
+    background: rgb(252, 223, 3);
+    font-family: Arial, Helvetica, sans-serif;
+    text-shadow: 0px 2px 2px rgba(0,0,0,0.3);
+    transform: rotate(-90deg);
+    z-index: -1;
+    transform-origin: bottom right;
+    animation-name: appear;
+    animation-delay: 1.5s;
+    animation-duration: 1s;
+    animation-fill-mode: forwards;
+    animation-timing-function: ease-out;
+    -webkit-animation-name: appear;
+    -webkit-animation-delay: 1.5s;
+    -webkit-animation-duration: 1s;
+    -webkit-animation-fill-mode: forwards;
+    -webkit-animation-timing-function: ease-out;
+}
+
+.winner-page p:nth-child(1){
+    font-size: 350%;
+}
+
+.winner-page p:nth-child(2), .winner-page p:nth-child(3){
+    font-size: 155%;
+    margin-top: 5px;
+}
+
+@keyframes appear {
+    0%{
+        transform: rotate(-90deg);
+    }
+
+    100%{
+        transform: rotate(0deg)
+    }
+}
+
+.game-over-page {
+    background: rgb(255, 0, 102);
+    transform: rotate(0deg);
+    transform-origin: bottom right;
+    animation-name: disappear;
+    animation-duration: 1s;
+    animation-delay: 1.5s;
+    animation-timing-function: ease-out;
+    animation-fill-mode: forwards;
+    -webkit-animation-name: disappear;
+    -webkit-animation-duration: 1s;
+    -webkit-animation-delay: 1.5s;
+    -webkit-animation-timing-function: ease-out;
+    -webkit-animation-fill-mode: forwards
+}
+
+@keyframes disappear {
+    0%{
+        transform: rotate(0deg);
+        transform-origin: bottom right;
+    }
+
+    100% {
+        transform: rotate(90deg);
+        transform-origin: bottom right;
+    }
+}
+
+.game-over-page p:nth-child(1) {
+    font-size: 550%;
+    font-weight: bold;
+    letter-spacing: 350%;
+    font-family: Arial, Helvetica, sans-serif;
+    text-shadow: 0px 3px 2px rgba(0,0,0,0.2);
+    position: relative;
+    top: 0px;
+    opacity: 1;
+    animation-name: slideDown;
+    animation-duration: .7s;
+    animation-timing-function: ease-in;
+    -webkit-animation-name: slideDown;
+    -webkit-animation-duration: .7s;
+    -webkit-animation-timing-function: ease-in;
+}
+
+@keyframes slideDown {
+    0%{
+        top: -100px;
+        opacity: 0;
+    }
+
+    100%{
+        top : 0px;
+        opacity: 1;
+    }
+}
+
+.card-container {
+    width: 106px;
+    height: 190px;
+    border: 1px solid;
+    border-radius: 5px;
+    margin: 10px 40px;
+    overflow: hidden;
+    animation-name: displayCard;
+    animation-duration: .5s;
+    animation-timing-function: linear;
+    animation-fill-mode: forwards;
+    -webkit-animation-name: displayCard;
+    -webkit-animation-duration: .5s;
+    -webkit-animation-timing-function: linear;
+    -webkit-animation-fill-mode: forwards;
+    transition: all 0.2s linear;
+}
+
+@keyframes displayCard {
+    0% {
+        transform: rotateY(90deg);
+    }
+
+    100%{
+        transform: rotateY(0deg);
+    }
+}
+
+.hint {
+    transform: rotate(0deg);
+    animation-name: shake;
+    animation-duration: 1s;
+    animation-timing-function: linear;
+    animation-iteration-count: 10;
+    -webkit-animation-name: shake;
+    -webkit-animation-duration: 1s;
+    -webkit-animation-timing-function: linear;
+    -webkit-animation-iteration-count: 10;
+    -ms-animation-name: shake;
+    -ms-animation-duration: 1s;
+    -ms-animation-timing-function: linear;
+    -ms-animation-iteration-count: 10;
+}
+
+@keyframes shake {
+    0% {
+        transform: rotate(0deg);
+    }
+
+    20%{
+        transform: rotate(-15deg);
+    }
+
+    40%{
+        transform: rotate(15deg);
+    }
+
+    60%{
+        transform: rotate(-15deg);
+    }
+
+    80%{
+        transform: rotate(15deg);
+    }
+
+    100%{
+        transform: rotate(0deg);
+    }
+}
+
+.card-container img  {
+    width: 100%;
+    height: 100%;
+}
+
+.card-container:hover {
+    cursor: pointer;
+    box-shadow: 0px 0px 10px 1px rgba(0,0,0,0.5);
+
+}
+
+.details {
+    width: 100%;
+    display: flex;
+    justify-content: flex-start;
+    align-items: flex-start;
+    padding: 0 10px;
+    z-index: 100
+}
+
+.game-info-container {
+    width: 25%;
+}
+
+button {
+    background: none;
+    border: none;
+    padding: 5px;
+    font-size: 105%;
+    border-radius: 2px;
+    color: white;
+    margin-top: 5px;
+    outline: none;
+}
+
+button:hover {
+    cursor: pointer;
+    box-shadow: 0px 2px 2px rgba(0,0,0,0.5)
+}
+
+#evaluate {
+    background: rgb(0, 153, 255);
+}
+
+#add-cards {
+    background: rgb(255, 0, 102)
+}
+
+#end-game {
+    background: rgb(52, 235, 113);
+}
+
+#hint {
+    background: rgb(247, 176, 52);
+}
+
+.card-history-container {
+    width: 75%;
+    height: 250px;
+    border-radius: 3px;
+    display: flex;
+    align-items: flex-start;
+    justify-content: space-around;
+}
+
+.player1-info {
+    width: 49%;
+    height: 100%;
+}
+
+.player2-info {
+    width: 49%;
+    height: 100%;
+}
+
+.player1-history {
+    display: inline-block;
+    width: 100%;
+    height: 100%;
+    border: 1px solid rgba(0,0,0,.5);
+    border-radius: 4px;
+    overflow: scroll;
+}
+
+.player1-info p, .player2-info p {
+    padding: 10px 0;
+}
+
+.player2-history {
+    display: inline-block;
+    width: 100%;
+    height: 100%;
+    border: 1px solid rgba(0,0,0,.5);
+    border-radius: 4px;
+    overflow: scroll
+}
+
+span {
+    font-weight: bold
+}
+
+.selected-card {
+    border-bottom: 15px solid rgb(255, 0, 102);
+    border-top: 1px solid rgb(255, 0, 102);
+    border-left: 1px solid rgb(255, 0, 102);
+    border-right: 1px solid rgb(255, 0, 102);
+    transition: all .2s linear;
+    display: block;
+    opacity: 1
+}
+
+.set-list {
+    width: 100%;
+}
+
+.each-round-set-ul:nth-child(odd) {
+    width: 100%;
+    height: 70px;
+    border-bottom: 1px solid;
+    display: flex;
+    justify-content: space-around;
+    align-items: center;
+    background: rgba(0,0,0,0.1);
+}
+
+.each-round-set-ul:nth-child(even) {
+    width: 100%;
+    height: 70px;
+    border-bottom: 1px solid;
+    display: flex;
+    justify-content: space-around;
+    align-items: center;
+}
+
+.each-round-set-li {
+    list-style-type: none;
+    width: 58px;
+    height: 58px;
+    overflow: hidden;
+    border-radius: 50%;
+    box-shadow: 0px 0px 10px rgba(0,0,0,0.2);
+}
+
+.each-round-set-li img {
+    width: 100%;
+    height: 100%;
+}
+
+
+.game-over-page p:nth-child(2){
+    font-size: 105%;
+    font-family: Arial, Helvetica, sans-serif;
+}
+/* end of game page styling */
+
+
+/* start of popup stlying */
+.popup-container {
+    width: 100%;
+    height: 100%;
+    position: fixed;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    top: 0;
+    left: 0;
+    right: 0;
+    bottom: 0;
+    background: var(--background-color);
+    display: none;
+}
+
+.popup {
+    box-shadow: 0px 0px 5px 2px rgba(0,0,0,0.4);
+    color: white;
+    font-family: Arial, Helvetica, sans-serif;
+    width: 60%;
+    height: 300px;
+    padding: 5px 10px;
+    border-radius: 5px;
+
+}
+
+.popup p {
+    text-shadow: 0 3px 3px rgba(0,0,0,0.4);
+    text-align: center;
+    padding: 15px 0
+}
+
+.popup span {
+    font-size: 220%;
+    transition: color .1s linear;
+}
+
+.popup span:hover {
+    cursor: pointer;
+    color: var(--background-color);
+    transition: all .1s linear;
+}
+
+.popup p:nth-child(2) {
+    font-size: 250%;
+}
+
+.popup p:nth-child(3) {
+    font-size: 150%;
+}
+
+.card-limit-popup {
+    background: rgb(255, 0, 102);
+}
+
+.insufficient-card-popup{
+    background: rgb(52, 235, 113);
+}   
+
+.no-more-card-popup {
+    background: rgb(0, 153, 255);
+}
+
+.close {
+    display: flex;
+    align-items: center;
+    justify-content: flex-end;
+}
+/* end of popup styling */
+
+
+/* hint popup styling  */
+.quick-popup {
+    width: 20%;
+    height: 50px;
+    position: absolute;
+    top: calc(100vh / 2 - (50px /2));
+    left: calc(100vw / 2 - (100vw * 0.2)/2);
+    background: rgba(0,0,0,.5);
+    color: white;
+    border-radius: 5px;
+    font-family: Arial, Helvetica, sans-serif;
+    box-shadow: 0px 0px 3px black;
+    text-align: center;
+    padding: 10px;
+    display: none
+}
+/* end of hint styling */
